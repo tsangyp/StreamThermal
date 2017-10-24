@@ -23,8 +23,7 @@ T_rateofchange <- function(sitedata,TlengthPortion=2/3,
                            SeasonSp=c(3,4,5), SeasonSu=c(6,7,8),
                            SeasonFa=c(9,10,11),SeasonWi=c(12,1,2)){
 
-  SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
-  SiteInfo<-SiteInfo[1]
+  SiteInfo<-sitedata[1,1]
   
 # timing of maximum mean and maximum temperature
 # take average if multiple years
@@ -154,15 +153,14 @@ SiteSeasonMetrics<-c(RCsp,
 
 # collect all the metrics-----------------------------------------------------
 
-SiteMetrics<-matrix(c(SiteInfo[1],SiteMonthlyMetrics,SiteSeasonMetrics),nrow=1, ncol=17)
-                           
-
-colnames(SiteMetrics)<-c("siteinfo",
-                         paste("RC",1:12,sep=""),
+SiteMetrics<-matrix(c(SiteMonthlyMetrics,SiteSeasonMetrics),nrow=1, ncol=16)
+                         
+colnames(SiteMetrics)<-c(paste("RC",1:12,sep=""),
                          "RCsp",
                          "RCsu",
                          "RCfa",
                          "RCwi")
+SiteMetrics<-data.frame(SiteInfo,SiteMetrics,stringsAsFactors=FALSE)
 return(SiteMetrics)
 	
 }

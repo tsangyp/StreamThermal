@@ -36,4 +36,3 @@ T_rateofchange(sitedata)
 \keyword{change}
 \keyword{of}
 \keyword{rate}
-

@@ -34,4 +34,3 @@ names(sitedata)<-c("siteID","Date","MaxT","MinT","MeanT")
 T_variability(sitedata)
 }
 \keyword{variability}
-

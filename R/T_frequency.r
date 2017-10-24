@@ -27,8 +27,8 @@ T_frequency <- function(sitedata, cT=16, TlengthPortion=2/3,
 
   library(zoo)
 
-  SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
-  SiteInfo<-SiteInfo[1]
+  SiteInfo<-sitedata[1,1]
+  
 #Monthly------------------------------------------------------------------------
   FrequencyMonth<-function(sitedata,cT,y,TlengthPortion){
     FmaxcT<-c()
@@ -154,10 +154,9 @@ T_frequency <- function(sitedata, cT=16, TlengthPortion=2/3,
   
   # collect all the metrics-----------------------------------------------------
   
-  SiteMetrics<-matrix(c(SiteInfo[1],SiteMonthlyMetrics,SiteSeasonMetrics),nrow=1, ncol=49)
+  SiteMetrics<-matrix(c(SiteMonthlyMetrics,SiteSeasonMetrics),nrow=1, ncol=48)
   
-  
-  colnames(SiteMetrics)<-c("siteinfo",
+  colnames(SiteMetrics)<-c(
                            paste("FmaxcT",1:12,sep=""),
                            paste("FmincT",1:12,sep=""),
                            paste("FmeancT",1:12,sep=""),
@@ -165,7 +164,7 @@ T_frequency <- function(sitedata, cT=16, TlengthPortion=2/3,
                            "FmaxcTsu","FmincTsu","FmeancTsu",
                            "FmaxcTfa","FmincTfa","FmeancTfa",
                            "FmaxcTwi","FmincTwi","FmeancTwi")
-  
+  SiteMetrics<-data.frame(SiteInfo,SiteMetrics,stringsAsFactors=FALSE)
 
   
   return(SiteMetrics)	

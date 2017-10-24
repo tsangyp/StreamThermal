@@ -37,4 +37,3 @@ names(sitedata)<-c("siteID","Date","MaxT","MinT","MeanT")
 T_frequency(sitedata)
 }
 \keyword{timing}
-

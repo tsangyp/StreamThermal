@@ -24,8 +24,8 @@ T_variability<- function(sitedata, TlengthPortion=2/3,
                          SeasonFa=c(9,10,11),SeasonWi=c(12,1,2)){
   library(zoo)
 
-  SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
-  SiteInfo<-SiteInfo[1]
+  SiteInfo<-sitedata[1,1]
+  
 #Monthly------------------------------------------------------------------------
 VariabilityMonth<-function(sitedata,y,TlengthPortion){
   ADrange<-c()
@@ -307,10 +307,10 @@ if(i_longest>=1){
   SiteMovingMetrics<-as.data.frame(matrix(rep(NA,10),ncol=10))
   
 }
-
+SiteMovingMetrics<-as.numeric(SiteMovingMetrics)
 # collect all the metrics-----------------------------------------------------
-	SiteMetrics<-matrix(c(SiteInfo[1],SiteMonthlyMetrics,SiteSeasonMetrics,SiteMovingMetrics),nrow=1,ncol=83)
-	colnames(SiteMetrics)<-c("siteinfo",
+	SiteMetrics<-matrix(c(SiteMonthlyMetrics,SiteSeasonMetrics,SiteMovingMetrics),nrow=1,ncol=82)
+	colnames(SiteMetrics)<-c(
 					paste("ADrange",1:12,sep=""),paste("Rmean",1:12,sep=""),
           paste("CVDmax",1:12,sep=""),paste("CVDmin",1:12,sep=""),paste("CVDmean",1:12,sep=""),              
 					"RmaxSp","RminSp","RmeanSp",
@@ -322,7 +322,7 @@ if(i_longest>=1){
 					"Max14MovingADRT", "DiffExtreme4-14",
 					"Max7MovingADRT", "DiffExtreme2-7",
 					"Max3MovingADRT", "DiffExtreme1-3")
-		
+	SiteMetrics<-data.frame(SiteInfo,SiteMetrics,stringsAsFactors=FALSE)
 	return(SiteMetrics)		
 }
 

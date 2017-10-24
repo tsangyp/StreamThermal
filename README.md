@@ -1,21 +1,10 @@
-#Note 2016/10/20--
-There is a potential error that would happen when installing StreamThermal in PC. (Mac seems to be fine). The error message is as followed:
-
-Error in loadNamespace(i, cc(lib.loc, .libPaths()), versionCheck = vI[[i]]) : there is no package called 'stringi'
-Error : package 'stringr' could not be loaded
-
-Temporary solution: Please go ahead and install the following
-
-install.packages("Hmisc",,"http://cran.r-project.org")
-
-install.packages("stringr", repos='http://cran.us.r-project.org')
-
-install.packages("stringi",type="win.binary")
-
-I am investigating the error and will fix and update the package.
-
-Mahalo for your understanding,
+#Note 2016/10/27--
+I have updated the StreamThermal (V1.1) with little package dependency. Please try to install again.
 ~~ tsangyp
+
+Potential errors:
+
+1. The "internal error -3" often happens when you use install_github to install a package that's currently loaded; try restarting R and running the app again.
 
 # StreamThermal
 

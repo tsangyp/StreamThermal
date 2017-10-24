@@ -24,8 +24,7 @@ T_magnitude <- function(sitedata, TlengthPortion=2/3,
                         SeasonFa=c(9,10,11),SeasonWi=c(12,1,2)){
 library(zoo)
 
-SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
-SiteInfo<-SiteInfo[1]
+SiteInfo<-sitedata[1,1]
 
 #Monthly------------------------------------------------------------------------
 MagnitudeMonth<-function(sitedata,y,TlengthPortion){
@@ -231,13 +230,13 @@ if(i_longest>=1){
 }else{
   
   SiteMovingMetrics<-as.data.frame(matrix(rep(NA,10),ncol=10))
-  
-  
 }
 
+SiteMovingMetrics<-as.numeric(SiteMovingMetrics)
+
 # collect all the metrics-------------------------------------------------------
-	SiteMetrics<-matrix(c(SiteInfo[1],SiteMonthlyMetrics,SiteSeasonMetrics,SiteMovingMetrics),nrow=1,ncol=59)
-	colnames(SiteMetrics)<-c("siteinfo",
+	SiteMetrics<-matrix(c(SiteMonthlyMetrics,SiteSeasonMetrics,SiteMovingMetrics),nrow=1, ncol=58)
+  colnames(SiteMetrics)<-c(
 					paste("ADmax",1:12,sep=""),paste("ADmin",1:12,sep=""),paste("ADmean",1:12,sep=""),              
 					"MaxDmeanSp","MinDmeanSp","AvgDmeanSp",
 					"MaxDmeanSu","MinDmeanSu","AvgDmeanSu",
@@ -248,7 +247,7 @@ if(i_longest>=1){
 					"Max14MovingAMeanT","Max14MovingAMaxT",
 					"Max7MovingAMeanT","Max7MovingAMaxT",
 					"Max3MovingAMeanT","Max3MovingAMaxT")
-		
+	SiteMetrics<-data.frame(SiteInfo,SiteMetrics,stringsAsFactors=FALSE)
 	return(SiteMetrics)		
 }
 #==============================================================================================================================================================

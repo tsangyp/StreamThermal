@@ -26,8 +26,7 @@ T_timing <- function(sitedata, TlengthPortion=2/3,
 
   library(zoo)
 
-  SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
-  SiteInfo<-SiteInfo[1,]
+  SiteInfo<-sitedata[1,1]
 
 # timing of maximum mean and maximum temperature
 # take average if multiple years
@@ -261,16 +260,14 @@ SiteSeasonMetrics<-c(Jmaxminmean_sp,
   }else{
     
     SiteMovingMetrics<-as.data.frame(matrix(rep(NA,15),ncol=15))
-    
-    
   }
 
+  SiteMovingMetrics<-as.numeric(SiteMovingMetrics)
 # collect all the metrics-----------------------------------------------------
 
-  SiteMetrics<-as.data.frame(c(SiteInfo[1],SiteMonthlyMetrics,SiteSeasonMetrics,
-                           SiteMovingMetrics))
+  SiteMetrics<-matrix(c(SiteMonthlyMetrics,SiteSeasonMetrics,SiteMovingMetrics),nrow=1,ncol=63)
   
-  colnames(SiteMetrics)<-c("siteinfo",
+  colnames(SiteMetrics)<-c(
                            paste("JDmaxMaxT",1:12,sep=""),paste("JDminMinT",1:12,sep=""),paste("JDmaxMeanT",1:12,sep=""),
                            "JDmaxMaxTSp","JDminMinTSp","JDmaxMeanTSp",
                            "JDmaxMaxTSu","JDminMinTSu","JDmaxMeanTSu",
@@ -281,6 +278,7 @@ SiteSeasonMetrics<-c(Jmaxminmean_sp,
                            "JDM14MAMeanT","JDM14MAMaxT","JDM14MADRT",
                            "JDM7MAMeanT","JDM7MAMaxT","JDM7MADRT",
                            "JDM3MAMeanT","JDM3MAMaxT","JDM3MADRT")
+  SiteMetrics<-data.frame(SiteInfo,SiteMetrics,stringsAsFactors=FALSE)
   return(SiteMetrics)
 
 }
