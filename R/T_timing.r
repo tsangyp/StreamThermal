@@ -23,11 +23,9 @@
 T_timing <- function(sitedata, TlengthPortion=2/3, 
                               SeasonSp=c(3,4,5), SeasonSu=c(6,7,8),
                               SeasonFa=c(9,10,11),SeasonWi=c(12,1,2)){
-  library(labdsv)
-  library(stringr)
+
   library(zoo)
-  
-  
+
   SiteInfo<-subset(sitedata,select=-c(Date,MaxT,MinT,MeanT))
   SiteInfo<-SiteInfo[1,]
 
@@ -87,6 +85,17 @@ JD<-colMeans(JD,na.rm=TRUE)
 SiteMonthlyMetrics<-c(JD)
 
 #Seasonal-----------------------------------------------------------------------
+monthdays<-function(month){
+  if(month==2){
+    MonthDays<-28
+  }else if(month==1|month==3|month==5|month==7|month==8|month==10|month==12){
+    MonthDays<-31
+  }else{
+    MonthDays<-30
+  }
+  return(MonthDays)
+}
+
 TimingSeason<-function(sitedata,season,y,TlengthPortion){
   mo<-as.numeric(format(sitedata$Date,"%m"))
   i_season<-c()
@@ -94,7 +103,7 @@ TimingSeason<-function(sitedata,season,y,TlengthPortion){
   for(ii in season){
     i_temp<-which(mo==ii)
     i_season<-c(i_season,i_temp)
-    days<-monthDays(as.Date(paste("1990-",ii,"-01",sep="")))
+    days<-monthdays(ii)
     seasondays<-seasondays+days
   }
   

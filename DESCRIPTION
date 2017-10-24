@@ -1,17 +1,11 @@
 Package: StreamThermal
 Title: Calculating metrics that characterize stream thermal regime
-Version: 1.0
-Date: 2015-3-8
-Authors: Yin-Phan Tsang <tsangyp@msu.edu>
-Maintainer: Yin-Phan Tsang <tsangyp@msu.edu>
+Version: 1.1
+Authors: Yin-Phan Tsang <tsangy@hawaii.edu>
+Maintainer: Yin-Phan Tsang <tsangy@hawaii.edu>
 Description: Calculating metrics that characterize stream thermal regime
-Depends:
-    R (>= 3.1.0),
-    labdsv,
-    stringr,
-    zoo,
-    Hmisc
-License: 
+Depends: R (>= 3.3.1), zoo
+License:
     The MIT License (MIT)
     Copyright (c) <2015> <Yin-Phan Tsang>
     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,4 +23,6 @@ License:
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
+Encoding: UTF-8
 LazyData: true
+RoxygenNote: 5.0.1.9000
