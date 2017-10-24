@@ -1,3 +1,7 @@
+#Note 2017/10/23--
+This release updated the output as data.frame.
+~~ tsangyp
+
 #Note 2016/10/27--
 I have updated the StreamThermal (V1.1) with little package dependency. Please try to install again.
 ~~ tsangyp
