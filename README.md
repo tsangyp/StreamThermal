@@ -1,3 +1,7 @@
+#Note 2018/11/14--
+update the installation line in the Readme.md.
+~~ tsang
+
 #Note 2017/10/23--
 This release updated the output as data.frame.
 ~~ tsangyp
@@ -27,7 +31,7 @@ install.packages("devtools")
 
 library(devtools)
 
-install_github('StreamThermal','tsangyp')
+install_github('tsangyp/StreamThermal')
 
 library(StreamThermal)
 
